@@ -1,0 +1,14 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3030:3000
+    volumes:
+      - /mnt/zfast/stacks:/app/config # Path to your local configuration files
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Optional: For Docker service discovery
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=gethomepage.dev # Replace with your domain or IP
+   #   - PUID=1000 # Optional: Set to your user ID
+   #   - PGID=1000 # Optional: Set to your group ID
+    restart: unless-stopped
